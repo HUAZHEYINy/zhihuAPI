@@ -1,0 +1,8 @@
+工欲善其事，必先利其器
+
+1. 给大家推荐一款mac上编写python的IDE - Pycharm， 目前我发现它的优点有：1. python intepreter 的版本控制做的很棒，可以随意切换python 版本，另外对每个版本下都安装了什么lib也一目了然。2. 对于不同版本的python，可以很简单的对其进行lib的增加和删除。减少了安装需要考虑路径等不必要的麻烦。3. 支持 自动填充 你打出一个function的开头它给你结尾这样
+
+2. 遇到的第一个问题：
+	DEBUG: Forbidden by robots.txt: 
+	这是因为百度的网站的robits.txt禁止我们的爬虫访问他的任何链接。什么是robots.txt. http://www.robotstxt.org/robotstxt.html 简单来说就是对网上的爬虫的行为的一种规范，当一个爬虫来爬虫该网站时候，他会先去搜寻robots.txt然后根据里面的规则来进行爬取。
+	解决方法：在settings.py中 将ROBOTSTXT_OBEY 改为False. 
