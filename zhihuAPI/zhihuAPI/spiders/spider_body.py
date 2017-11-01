@@ -7,7 +7,7 @@ class zhihuSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'https://www.baidu.com'
+            'https://www.zhihu.com/topic/19609455/hot'
         ]
         yield scrapy.Request(url=urls[0], callback=self.parse)
 

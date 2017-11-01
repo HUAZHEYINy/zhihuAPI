@@ -6,12 +6,14 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import os
+import random
 
 class ZhihuapiSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
+    user_agents = []
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -53,4 +55,13 @@ class ZhihuapiSpiderMiddleware(object):
             yield r
 
     def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
+        with open("%s/zhihuAPI/user_agents.txt" % os.getcwd()) as user_agent_file:
+            self.user_agents = user_agent_file.read().split("\n")
+        spider.logger.info('Spider reading user angents: ')
+
+    def process_request(self, request, spider):
+        user_agent_index = random.randrange(92)
+        spider.logger.info('Spider %s, adding user agent %s for request %s', spider.name, self.user_agents[user_agent_index], request.headers)
+        request.headers['user-agent'] = self.user_agents[user_agent_index]
+        spider.logger.info('%s', request.headers)
+
