@@ -55,7 +55,7 @@ class ZhihuapiSpiderMiddleware(object):
             yield r
 
     def spider_opened(self, spider):
-        with open("%s/zhihuAPI/user_agents.txt" % os.getcwd()) as user_agent_file:
+        with open("%s/zhihu/user_agents.txt" % os.getcwd()) as user_agent_file:
             self.user_agents = user_agent_file.read().split("\n")
         spider.logger.info('Spider reading user angents: ')
 

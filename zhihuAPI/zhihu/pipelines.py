@@ -8,4 +8,5 @@
 
 class ZhihuapiPipeline(object):
     def process_item(self, item, spider):
+        print ('I am handleing item: ', item)
         return item

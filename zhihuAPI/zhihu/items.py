@@ -10,5 +10,7 @@ import scrapy
 
 class ZhihuapiItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    # question url
+    # question name
+    question_name = scrapy.Field()
+    question_url = scrapy.Field()

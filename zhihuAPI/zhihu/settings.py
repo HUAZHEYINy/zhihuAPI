@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for zhihuAPI project
+# Scrapy settings for zhihu project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'zhihuAPI'
+BOT_NAME = 'zhihu'
 
-SPIDER_MODULES = ['zhihuAPI.spiders']
-NEWSPIDER_MODULE = 'zhihuAPI.spiders'
+SPIDER_MODULES = ['zhihu.spiders']
+NEWSPIDER_MODULE = 'zhihu.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'zhihuAPI (+http://www.yourdomain.com)'
+#USER_AGENT = 'zhihu (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'zhihuAPI.middlewares.ZhihuapiSpiderMiddleware': 543,
+#    'zhihu.middlewares.ZhihuapiSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'zhihuAPI.middlewares.ZhihuapiSpiderMiddleware': 543,
+    'zhihu.middlewares.ZhihuapiSpiderMiddleware': 543,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 }
 
@@ -65,9 +65,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'zhihuAPI.pipelines.ZhihuapiPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'zhihu.pipelines.ZhihuapiPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
