@@ -21,7 +21,7 @@
 	解决方法： 根据分析它的登录界面发现，它有一个_xsrf value对于每次的最开始的请求是不一样的，所以首先将这个value拿出来，然后使用post进行模拟登陆试试。
 
 	遇到的第四个问题：
-	当过段时间后，我们不能抓取xsrf信息了。
+	当过想讲爬去的itemdata写入json文件的时候我们发现，中文字符都是unicode，所以使用codecs lib进行打开文件。
 
 3. 如果对某个页面进行最初始的分析？
 	建议使用Firefox，下载插件firebug。 打开firebug，打开 网络-> XHR (XMLHttpRequest: API用来通过 http 游览器与webserver之间的传递)。刷新页面你就能看到从你刷新之后到页面加载完成之间的数据传递是怎么样。 再介绍一个工具 Postman，使用postman可以对这个页面的单个请求进行请求。比如 请求一个get 或者post。

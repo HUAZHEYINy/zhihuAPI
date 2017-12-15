@@ -9,11 +9,11 @@ from zhihuAPI.zhihu.items import ZhihuapiItem
 class zhihuSpider(scrapy.Spider):
     name = "zhihu"
 
-    user_name = 'email'
-    password = 'password'
+    user_name = '用户名'
+    password = '密码'
     xsrf_token = ''
 
-    topic_url = 'topic url you want to crawl'
+    topic_url = 'topic url'#'https://www.zhihu.com/topic/19551275/hot'
     user_agents = []
     headers = {
         "Accept": "*/*",
@@ -32,10 +32,6 @@ class zhihuSpider(scrapy.Spider):
     #getting the xsrf token (its unique for every login.)
     def start_requests(self):
 
-        # self.user_name = input('Input ur username...\n')
-        # self.password = input('Input ur password...\n')
-        # self.topic_url = input('Topic url you want to search...\n')
-
         #assign user agents
         self.user_agents = self.get_user_agents()
         self.logger.info('current user agent: {}'.format(self.user_agents))
@@ -44,8 +40,6 @@ class zhihuSpider(scrapy.Spider):
             scrapy.http.FormRequest(
                 self.login_url,
                 headers = self.headers,
-
-                #cookies = self.cookies,
                 callback = self.post_login
             )
         ]
@@ -134,11 +128,19 @@ class zhihuSpider(scrapy.Spider):
             item = ZhihuapiItem()
             item['question_name'] = question_block.xpath('.//div/div/h2/a/text()').extract_first()
             item['question_url'] = question_block.xpath('.//div/div/h2/a/@href').extract_first()
-            print ("question: ", question_block.xpath('.//div/div/h2/a/text()').extract_first())
+            item['question_answer'] = question_block.xpath('.//div/div/div[1]/div[5]/div/a/@href').extract_first()
+            item['question_answer_author_profile'] = question_block.xpath('.//div/div/div[1]/div[3]/span/span[1]/a/@href').extract_first()
+            item['question_answer_author'] = question_block.xpath('.//div/div/div[1]/div[3]/span/span[1]/a/text()').extract_first()
+
+            self.logger.info('Question info: question name - {}, question answer - {}, question url - {}, question answer author profile - {}, question answer author - {}'.format(
+                item['question_name'], item['question_answer'], item['question_url'], item['question_answer_author_profile'], item['question_answer_author']
+            ))
+
+            yield item
 
         last_data_score = question_blocks[len(question_blocks)-1].xpath('@data-score').extract_first()
 
-        print ("last data score ", last_data_score)
+        self.logger.info('Last Data Score is - {}'.format(last_data_score))
         yield scrapy.http.FormRequest(
             self.topic_url,
             method='POST',
