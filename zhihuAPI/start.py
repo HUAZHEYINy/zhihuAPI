@@ -5,4 +5,4 @@ from scrapy import cmdline
 #cmdline.execute("scrapy startproject zhihu".split())
 
 #4. use this line to execute ur spider
-cmdline.execute("scrapy crawl zhihu".split())
+#cmdline.execute("scrapy crawl zhihu".split())
