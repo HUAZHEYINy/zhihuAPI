@@ -9,7 +9,7 @@ import codecs
 
 class ZhihuapiPipeline(object):
     def open_spider(self, spider):
-        self.file = codecs.open('itemss.json', 'wb', encoding='utf-8')
+        self.file = codecs.open('items.json', 'wb', encoding='utf-8')
 
     def close_spider(self, spider):
         self.file.close()
@@ -24,7 +24,6 @@ class ZhihuapiPipeline(object):
             item['question_answer_author'] = item['question_answer_author'].strip()
 
             line = json.dumps(dict(item)) + "\n"
-            self.file.write(line)
-            #self.file.write(line.encode('ascii').decode('unicode-escape'))
+            self.file.write(line.encode('ascii').decode('unicode-escape'))
 
             return item

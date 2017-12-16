@@ -14,12 +14,11 @@ class zhihuSpider(scrapy.Spider):
     password = '密码'
     xsrf_token = ''
 
-    topic_url = '话题的URL'
+    topic_url = '话题url，本爬虫是有目标目的的所以目前只能针对某个话题按照热度排名的url爬取例如url->https://www.zhihu.com/topic/19551275/hot'
     user_agents = []
     headers = {
         "Accept": "*/*",
         "Accept-Language": "en-US,en;q=0.5",
-        "Accept-Encoding": "gzip, deflate, br",
         "Referer": "https://www.zhihu.com/",
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         "X-Requested-With": "XMLHttpRequest",
@@ -120,6 +119,7 @@ class zhihuSpider(scrapy.Spider):
             callback=self.after_login
         )
 
+    #you can customize the parse() by yourself.
     #after successfully login, starting handle the actual content.
     def parse(self, response):
         #getting the question blocks from response.
