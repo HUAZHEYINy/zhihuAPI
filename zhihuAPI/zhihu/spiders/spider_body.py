@@ -14,7 +14,7 @@ class zhihuSpider(scrapy.Spider):
     password = '密码'
     xsrf_token = ''
 
-    topic_url = '话题的URL'
+    topic_url = '话题的URL'#'https://www.zhihu.com/topic/19551275/hot'
     user_agents = []
     headers = {
         "Accept": "*/*",
