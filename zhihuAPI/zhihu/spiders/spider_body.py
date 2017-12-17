@@ -15,6 +15,7 @@ class zhihuSpider(scrapy.Spider):
     xsrf_token = ''
 
     topic_url = '话题url，本爬虫是有目标目的的所以目前只能针对某个话题按照热度排名的url爬取例如url->https://www.zhihu.com/topic/19551275/hot'
+
     user_agents = []
     headers = {
         "Accept": "*/*",
